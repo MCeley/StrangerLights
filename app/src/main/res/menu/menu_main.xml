@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.aurasoftworks.android.strangerlights.MainActivity">
+    <item
+        android:id="@+id/action_connect"
+        android:title="@string/action_connect"
+        android:icon="@drawable/ic_bluetooth"
+        app:showAsAction="ifRoom" />
+</menu>
