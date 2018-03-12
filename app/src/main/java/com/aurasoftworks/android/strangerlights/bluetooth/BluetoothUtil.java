@@ -3,7 +3,11 @@ package com.aurasoftworks.android.strangerlights.bluetooth;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothSocket;
+import android.support.annotation.WorkerThread;
 
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.Set;
 import java.util.UUID;
 
@@ -47,5 +51,54 @@ public class BluetoothUtil {
 
     public static BluetoothDevice getConnectedDevice() {
         return bluetoothDevice;
+    }
+
+    @WorkerThread
+    public static boolean sendDataOverBluetooth(byte[] data) {
+
+        BluetoothSocket outputSocket = null;
+
+        try {
+            outputSocket = bluetoothDevice
+                    .createRfcommSocketToServiceRecord(BLUETOOTH_DEVICE_UUID);
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+
+        if(outputSocket == null) {
+            return false;
+        }
+
+        try {
+            bluetoothAdapter.cancelDiscovery();
+
+            outputSocket.connect();
+
+            OutputStream os = outputSocket.getOutputStream();
+            os.write(data);
+
+            try {
+                Thread.sleep(1000);
+            } catch(InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            os.close();
+
+            outputSocket.close();
+
+        } catch(IOException e) {
+            e.printStackTrace();
+
+            try {
+                outputSocket.close();
+            } catch(IOException e1) {
+                e1.printStackTrace();
+            }
+
+            return false;
+        }
+
+        return true;
     }
 }

@@ -1,5 +1,6 @@
 package com.aurasoftworks.android.strangerlights;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.aurasoftworks.android.strangerlights.bluetooth.BluetoothService;
 import com.aurasoftworks.android.strangerlights.bluetooth.BluetoothUtil;
 
 public class MainActivity extends AppCompatActivity {
@@ -59,9 +61,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void sendTextViaBluetooth(String text) {
-        BluetoothUtil util = new BluetoothUtil();
-        if(util.isBluetoothEnabled()) {
-            util.findBluetoothDevice();
+        if(BluetoothUtil.isBluetoothEnabled()) {
+            BluetoothUtil.findBluetoothDevice();
+
+            if(BluetoothUtil.getConnectedDevice() != null) {
+                Intent intent = new Intent(this, BluetoothService.class);
+                intent.putExtra(BluetoothService.EXTRA_BLUETOOTH_DATA, text);
+                startService(intent);
+            }
         }
     }
 }
