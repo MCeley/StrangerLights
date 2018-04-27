@@ -13,7 +13,7 @@ import android.view.MenuItem;
 import com.aurasoftworks.android.strangerlights.bluetooth.BluetoothService;
 import com.aurasoftworks.android.strangerlights.bluetooth.BluetoothUtil;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MainFragment.LightCommandListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +58,11 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return null;
+    }
+
+    @Override
+    public void processCommand(String command) {
+        sendTextViaBluetooth(command);
     }
 
     private void sendTextViaBluetooth(String text) {

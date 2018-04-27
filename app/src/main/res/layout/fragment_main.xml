@@ -10,4 +10,22 @@
         android:layout_width="match_parent"
         android:inputType="textMultiLine|textCapCharacters"/>
 
+    <Button android:id="@+id/button_turn_off"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/turn_off_lights" />
+
+    <Button android:id="@+id/button_show_lights"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/show_all_lights" />
+
+    <Button android:id="@+id/button_flash_lights"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/flash_all_lights" />
+
 </LinearLayout>
