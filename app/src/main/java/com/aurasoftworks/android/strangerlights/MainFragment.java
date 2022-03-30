@@ -1,12 +1,14 @@
 package com.aurasoftworks.android.strangerlights;
 
 import android.content.Context;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 
 import com.aurasoftworks.android.strangerlights.bluetooth.BluetoothService;
 
@@ -19,7 +21,7 @@ public class MainFragment extends Fragment implements View.OnClickListener {
     private LightCommandListener mListener;
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         super.onAttach(context);
 
         if(context instanceof LightCommandListener) {

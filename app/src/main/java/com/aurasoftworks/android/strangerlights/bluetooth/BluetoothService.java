@@ -2,8 +2,9 @@ package com.aurasoftworks.android.strangerlights.bluetooth;
 
 import android.app.IntentService;
 import android.content.Intent;
-import android.support.annotation.Nullable;
 import android.util.Log;
+
+import androidx.annotation.Nullable;
 
 import com.aurasoftworks.android.strangerlights.lights.LightsUtil;
 

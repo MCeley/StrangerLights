@@ -2,16 +2,16 @@ package com.aurasoftworks.android.strangerlights;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import com.aurasoftworks.android.strangerlights.bluetooth.BluetoothService;
 import com.aurasoftworks.android.strangerlights.bluetooth.BluetoothUtil;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity implements MainFragment.LightCommandListener {
 
@@ -23,12 +23,9 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Ligh
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String text = getTextFromFragment();
-                sendTextViaBluetooth(text);
-            }
+        fab.setOnClickListener(view -> {
+            String text = getTextFromFragment();
+            sendTextViaBluetooth(text);
         });
     }
 
