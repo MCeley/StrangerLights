@@ -45,16 +45,12 @@ public class MainFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         int id = v.getId();
 
-        switch(id) {
-            case R.id.button_flash_lights:
-                mListener.processCommand(BluetoothService.COMMAND_FLASH_LIGHTS);
-                break;
-            case R.id.button_show_lights:
-                mListener.processCommand(BluetoothService.COMMAND_SHOW_LIGHTS);
-                break;
-            case R.id.button_turn_off:
-                mListener.processCommand(BluetoothService.COMMAND_TURN_OFF);
-                break;
+        if(id == R.id.button_flash_lights) {
+            mListener.processCommand(BluetoothService.COMMAND_FLASH_LIGHTS);
+        } else if(id == R.id.button_show_lights) {
+            mListener.processCommand(BluetoothService.COMMAND_SHOW_LIGHTS);
+        } else if(id == R.id.button_turn_off) {
+            mListener.processCommand(BluetoothService.COMMAND_TURN_OFF);
         }
     }
 

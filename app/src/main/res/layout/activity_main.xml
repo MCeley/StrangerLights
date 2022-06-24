@@ -29,6 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
+        android:contentDescription="@string/send"
         app:srcCompat="@drawable/ic_send" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

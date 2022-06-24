@@ -8,7 +8,9 @@
     <EditText android:id="@+id/edit_string"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:inputType="textMultiLine|textCapCharacters"/>
+        android:hint="@string/enter_text"
+        android:inputType="textMultiLine|textCapCharacters"
+        android:importantForAutofill="no" />
 
     <Button android:id="@+id/button_turn_off"
         android:layout_height="wrap_content"

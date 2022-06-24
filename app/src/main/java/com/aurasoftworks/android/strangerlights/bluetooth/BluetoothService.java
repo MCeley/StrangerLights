@@ -38,15 +38,20 @@ public class BluetoothService extends IntentService {
             return;
         }
 
-        byte[] data = null;
-        if(textData.equals(COMMAND_TURN_OFF)) {
-            data = new byte[] {40};
-        } else if(textData.equals(COMMAND_SHOW_LIGHTS)) {
-            data = new byte[] {41};
-        } else if(textData.equals(COMMAND_FLASH_LIGHTS)) {
-            data = new byte[] {42};
-        } else {
-            data = LightsUtil.getLightBytesFromString(textData);
+        byte[] data;
+        switch (textData) {
+            case COMMAND_TURN_OFF:
+                data = new byte[]{40};
+                break;
+            case COMMAND_SHOW_LIGHTS:
+                data = new byte[]{41};
+                break;
+            case COMMAND_FLASH_LIGHTS:
+                data = new byte[]{42};
+                break;
+            default:
+                data = LightsUtil.getLightBytesFromString(textData);
+                break;
         }
 
         if(data == null) {

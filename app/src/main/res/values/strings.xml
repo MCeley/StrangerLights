@@ -4,4 +4,6 @@
     <string name="turn_off_lights">Turn Off Lights</string>
     <string name="show_all_lights">Show All Lights</string>
     <string name="flash_all_lights">Flash All Lights</string>
+    <string name="enter_text">Enter Text</string>
+    <string name="send">Send</string>
 </resources>

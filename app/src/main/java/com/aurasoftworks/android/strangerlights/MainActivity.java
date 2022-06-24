@@ -1,19 +1,27 @@
 package com.aurasoftworks.android.strangerlights;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 
 import com.aurasoftworks.android.strangerlights.bluetooth.BluetoothService;
 import com.aurasoftworks.android.strangerlights.bluetooth.BluetoothUtil;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity implements MainFragment.LightCommandListener {
+
+    private final ActivityResultLauncher<String> requestPermissionLauncher =
+            registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> { });
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +48,10 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Ligh
         int id = item.getItemId();
 
         if (id == R.id.action_connect) {
+            if(ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) !=
+                    PackageManager.PERMISSION_GRANTED && Build.VERSION.SDK_INT > Build.VERSION_CODES.R) {
+                requestPermissionLauncher.launch(Manifest.permission.BLUETOOTH_CONNECT);
+            }
             return true;
         }
 
